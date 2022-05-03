@@ -70,4 +70,5 @@ int main(){
 int n;
 Libro libro[50];
 menu(libro);
+elimina_record(libro);
 }
