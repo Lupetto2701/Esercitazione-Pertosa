@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 struct Libro{
@@ -88,7 +89,6 @@ cout<<"TAG DEL GENERE: "<<libro[i].tag<<endl;
 }
 }
 }
-
 
 void modifica_libro(Libro libro[]){
 int i;
@@ -235,6 +235,36 @@ while(scelta!=9);
 
 }}}
 
+
+
+void salvataggio_catalogo(Libro libro[]){
+
+    ofstream scrivi("salvataggio.txt");
+    if(!scrivi){
+        cout<<endl;
+        cout<<"ERRORE SALVATAGGIO CATALOGO";
+    }
+    else{
+        for(int i=0; i<=x; i++){
+        scrivi<<"/n";
+        scrivi<<"ISBN: "<<libro[i].ISBN<<"\n";
+        scrivi<<"TITOLO: "<<libro[i].titolo<<"\n";
+        scrivi<<"AUTORE: "<<libro[i].autore<<"\n";
+        scrivi<<"EDITORE: "<<libro[i].editore<<"\n";
+        scrivi<<"ANNO DI PUBBLICAZIONE: "<<libro[i].annopubblicazione<<"\n";
+        scrivi<<"PREZZO: "<<libro[i].prezzo<<"\n";
+        scrivi<<"TAG DEL GENERE: "<<libro[i].tag<<"\n";
+        scrivi<<"//////////////////////////////////////\n";
+        }
+        }
+    scrivi.close();
+        cout<<endl;
+        cout<<"SALVATAGGIO EFFETTUATO!!!";
+        cout<<endl;
+        cout<<endl;
+}
+
+
 void menu(Libro libro[]){
 int menu=0;
 
@@ -246,7 +276,8 @@ cout<<"2) VISUALIZZA CATALOGO BIBLIOTECA"<<endl;
 cout<<"3) CANCELLA LIBRO TRAMITE ISBN"<<endl;
 cout<<"4) RICERCA LIBRO TRAMITE ISBN"<<endl;
 cout<<"5) MODIFICA LIBRO TRAMITE ISBN"<<endl;
-cout<<"6) ESCI DAL MENU"<<endl<<endl;
+cout<<"6) SALVA CATALOGO LIBRI"<<endl;
+cout<<"7) ESCI DAL MENU"<<endl<<endl;
 cout<<"FAI UNA SCELTA: ";
 cin>>menu;
 
@@ -282,6 +313,12 @@ case 5:
 break;
 
 case 6:
+    cout<<endl;
+    salvataggio_catalogo(libro);
+    cout<<endl;
+break;
+
+case 7:
     cout<<endl;
     cout<<"USCITA DAL MENU IN CORSO..."<<endl;
     cout<<"USCITA DAL MENU EFFETTUATA!!!"<<endl;
